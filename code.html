@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="h-100">
 <head>
-    <title>App Name: A Coding Project By David Vasquez</title>
+    <title>TRIPLE DIGITS: A Coding Project By David Vasquez</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,7 +19,7 @@
 <!-- ==== Nav Section ==== -->    
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="img/Menu Img.png" class="d-inline-block align-text-top" width="30" width="24"> APP NAME</a>
+        <a class="navbar-brand" href="#"><img src="img/Menu Img.png" class="d-inline-block align-text-top" width="30" width="24"> TRIPLE DIGITS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -48,15 +48,85 @@
 <!-- ==== Main Section ==== -->  
 <main class="flex-shrink-0">
   <div class="container py-5 px-5 mt-5">
-    <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>
+    <h2 class="border-1 border-bottom border-dark">The Code for TRIPLE DIGITS.</h2>
     <div class="row row-cols-1 row-cols-lg-2">
       <div class="col col-lg-8">
         <pre class="line-numbers"><code class="language-javascript">
-          //Call Hello World
-          function HelloWorld(){
-              alert("Hello World");
-          }
-
+            //Get values from the input
+            //Start or controller function
+            function getValues(){
+              //Get values from the page
+              let startValue = document.getElementById("startValue").value;
+              let endValue = document.getElementById("endValue").value;
+            
+              //Ensure that input value are integers, and not strings
+              startValue = parseInt(startValue);
+              endValue = parseInt(endValue);
+            
+              //Check to see if text was given in the input field
+              if(Number.isInteger(startValue) && Number.isInteger(endValue)){
+                //Call generateNumbers
+                numbers = generateNumbers(startValue, endValue);
+            
+                //Call displayNumbers
+                displayNumbers(numbers);
+            
+              } else {
+                alert("You must enter integers for both fields");
+              }
+            
+            
+            }
+            
+            //Generate numbers from start value to end value
+            //logics functions
+            function generateNumbers(sValue, eValue){
+              let numbers = [];
+            
+              //Get all numbers from start to end
+              for (let index = sValue; index <= eValue; index++) {
+                
+                //Add values to array "numbers"
+                numbers.push(index);
+                
+              }
+            
+              return numbers;
+              
+            
+            }
+            
+            //Display even numbers in bold
+            //display or view functions
+            function displayNumbers(numbers){
+              
+              let templateRows = "";
+            
+              for (let index = 0; index < numbers.length; index++) {
+                let className = "even";
+            
+                //Identify individual number in the array
+                let number = numbers[index];
+            
+                //Check if value is even
+                //If the result of value/2 is equal to 0, then value is even
+                if(number % 2 == 0){
+                  className = "even";
+            
+                } else {
+                  className = "odd";
+            
+                }
+            
+                //Create HTML code with corresponding class names for even and odd
+                //NOTE: This does not render correctly with Prism.JS
+                templateRows += `<tr><td class="${className}" >${number}</td></tr>`;
+                
+              }
+            
+              document.getElementById("results").innerHTML = templateRows;
+            
+            }
         </code>
       </pre>
 
